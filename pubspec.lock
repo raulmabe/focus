@@ -23,12 +23,14 @@ packages:
     source: hosted
     version: "2.0.6"
   audioplayers:
-    dependency: transitive
+    dependency: "direct main"
     description:
-      name: audioplayers
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.1"
+      path: "."
+      ref: HEAD
+      resolved-ref: "631bedf60f3c3956d6522c23f764b811d5e577b7"
+      url: "git://github.com/the4thfloor/audioplayer.git"
+    source: git
+    version: "0.5.7"
   barback:
     dependency: transitive
     description:
@@ -43,13 +45,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  box2d:
-    dependency: transitive
-    description:
-      name: box2d
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0"
   charcode:
     dependency: transitive
     description:
@@ -99,13 +94,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
-  flame:
-    dependency: "direct main"
-    description:
-      name: flame
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -430,5 +418,5 @@ packages:
     source: hosted
     version: "2.1.13"
 sdks:
-  dart: ">=2.0.0-dev.28.0 <=2.0.0-edge.3c4dccbd46f152be9e1b6ca95c57357e8e48057c"
+  dart: ">=2.0.0-dev.28.0 <=2.0.0-edge.af1436931b93e755d38223c487d33a0a1f5eadf5"
   flutter: ">=0.1.4 <2.0.0"

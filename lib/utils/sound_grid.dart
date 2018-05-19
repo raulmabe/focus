@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-//import '../audioPlayer.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flame/audio.dart';
-import 'package:flame/flame.dart';
+import 'package:audioplayers/audioplayer.dart';
 
 class SoundGrid extends StatefulWidget{
 
@@ -18,8 +16,6 @@ enum PlayerState { stopped, playing, paused }
 class _soundGridState extends State<SoundGrid> {
 
   //List<AudioPlayer> audioPlayers;
-
-  List<Audio> audios;
   List<PlayerState> playerStates;
   List<String> paths;
 
@@ -33,7 +29,6 @@ class _soundGridState extends State<SoundGrid> {
       activeSounds = new List<bool>();
       volumeSounds = new List<double>();
       //audioPlayers = new List<AudioPlayer>();
-      audios = new List<Audio>();
       playerStates = new List<PlayerState>();
       paths = new List<String>();
       for(int i = 0; i < 16; ++i) images.add(new AssetImage(getImage(i)));
@@ -43,10 +38,6 @@ class _soundGridState extends State<SoundGrid> {
       //AudioPlayer.logEnabled = false;
       for(int i = 0; i < 16; ++i) playerStates.add(PlayerState.stopped);
       for(int i = 0; i < 16; ++i) paths.add(getPath(i));
-
-      for(int i = 0; i < 16; ++i) Flame.audio.load(getPath(i));
-      for(int i = 0; i < 16; ++i) audios.add(new Audio());
-
       super.initState();
     }
 
@@ -125,7 +116,6 @@ class _soundGridState extends State<SoundGrid> {
       activeSounds[i] = play;
       setState(() {});
       // Reproduce sound
-      if(play) audios[i].loop(getPath(i), volume: volumeSounds[i]); //playSound(i);
       
       //  playerStates[i] = PlayerState.stopped;
       //  await audioPlayers[i].stop();
