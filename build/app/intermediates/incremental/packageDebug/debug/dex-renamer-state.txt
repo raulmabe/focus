@@ -1,0 +1,4 @@
+#Sun Jul 08 17:00:14 CEST 2018
+base.0=/home/raul/Projects/focus/build/app/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

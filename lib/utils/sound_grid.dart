@@ -15,7 +15,8 @@ enum PlayerState { stopped, playing, paused }
 
 class _soundGridState extends State<SoundGrid> {
 
-  //List<AudioPlayer> audioPlayers;
+  List<AudioPlayer> audioPlayers;
+
   List<PlayerState> playerStates;
   List<String> paths;
 
@@ -28,14 +29,13 @@ class _soundGridState extends State<SoundGrid> {
       images = new List<AssetImage>();
       activeSounds = new List<bool>();
       volumeSounds = new List<double>();
-      //audioPlayers = new List<AudioPlayer>();
+      audioPlayers = new List<AudioPlayer>();
       playerStates = new List<PlayerState>();
       paths = new List<String>();
       for(int i = 0; i < 16; ++i) images.add(new AssetImage(getImage(i)));
       for(int i = 0; i < 16; ++i) activeSounds.add(false);
       for(int i = 0; i < 16; ++i) volumeSounds.add(0.5);
-      //for(int i = 0; i < 16; ++i) audioPlayers.add(new AudioPlayer());
-      //AudioPlayer.logEnabled = false;
+      for(int i = 0; i < 16; ++i) audioPlayers.add(new AudioPlayer());
       for(int i = 0; i < 16; ++i) playerStates.add(PlayerState.stopped);
       for(int i = 0; i < 16; ++i) paths.add(getPath(i));
       super.initState();
@@ -87,44 +87,41 @@ class _soundGridState extends State<SoundGrid> {
       );
     }
 
-    /*playSound(int i) async {
+    playSound(int i) async {
       final dir = await getTemporaryDirectory();
       final file = new File('${dir.path}/${paths[i]}');
       final soundData = await rootBundle.load('assets/sounds/${paths[i]}');
       final bytes = soundData.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
-
-      int result;
+      print('Playing ${paths[i]}');
+      int result = 0;
       if(playerStates[i] != PlayerState.playing)
         result = await audioPlayers[i].play(file.path, isLocal: true, volume: volumeSounds[i], loop: true);
-       else {
-        result = await audioPlayers[i].pause();
-        if(result == 1) result = await audioPlayers[i].play(file.path, isLocal: true, volume: volumeSounds[i],
-        loop: true);
-      }
       if(result == 1) playerStates[i] = PlayerState.playing;
     }
-*/
+
 
     void changeVolume(int i, double value) async{
       volumeSounds[i] = value;
       setState(() {});
-      //await audioPlayers[i].volume(value);
+      await audioPlayers[i].volume(value);
     }
 
     void setSound(int i, bool play) async{
       activeSounds[i] = play;
       setState(() {});
       // Reproduce sound
-      
-      //  playerStates[i] = PlayerState.stopped;
-      //  await audioPlayers[i].stop();
-      //
+      if(play) playSound(i);
+      else{
+        await audioPlayers[i].stop();
+        playerStates[i] = PlayerState.stopped;
+      }
     }
 
     String getPath(int i){
+      i = 0;
       switch (i) {
-        case 0: return 'rain.mp3';
+        case 0: return 'sample_loop.wav';
         case 1: return 'thunder.mp3';
         case 2: return 'wind.mp3';
         case 3: return 'forest.mp3';

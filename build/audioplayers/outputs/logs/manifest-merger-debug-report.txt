@@ -1,0 +1,33 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:2:3-32
+		INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml
+		INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:4:3-30
+		INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml
+		INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:1:11-69
+	android:versionCode
+		ADDED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:3:3-26
+		INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml
+		INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml
+uses-sdk
+ADDED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:6:3-72
+INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:6:3-72
+INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:6:3-72
+	android:targetSdkVersion
+		ADDED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:6:40-69
+	android:minSdkVersion
+		ADDED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml:6:13-39
+		INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml
+		INJECTED from /home/raul/Apps/flutter/.pub-cache/git/audioplayer-631bedf60f3c3956d6522c23f764b811d5e577b7/android/src/main/AndroidManifest.xml

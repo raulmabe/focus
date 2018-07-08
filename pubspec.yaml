@@ -51,22 +51,23 @@ flutter:
     - assets/water.png
     - assets/whitenoise.png
     - assets/wind.png
-    - assets/audio/brownnoise.mp3
-    - assets/audio/coffee.mp3
-    - assets/audio/fan.mp3
-    - assets/audio/fire.mp3
-    - assets/audio/forest.mp3
-    - assets/audio/leaves.mp3
-    - assets/audio/night.mp3
-    - assets/audio/pinknoise.mp3
-    - assets/audio/rain.mp3
-    - assets/audio/seaside.mp3
-    - assets/audio/thunder.mp3
-    - assets/audio/train.mp3
-    - assets/audio/water_pops.mp3
-    - assets/audio/water.mp3
-    - assets/audio/whitenoise.mp3
-    - assets/audio/wind.mp3
+    - assets/sounds/brownnoise.mp3
+    - assets/sounds/coffee.mp3
+    - assets/sounds/fan.mp3
+    - assets/sounds/fire.mp3
+    - assets/sounds/forest.mp3
+    - assets/sounds/leaves.mp3
+    - assets/sounds/night.mp3
+    - assets/sounds/pinknoise.mp3
+    - assets/sounds/rain.mp3
+    - assets/sounds/seaside.mp3
+    - assets/sounds/thunder.mp3
+    - assets/sounds/train.mp3
+    - assets/sounds/water_pops.mp3
+    - assets/sounds/water.mp3
+    - assets/sounds/whitenoise.mp3
+    - assets/sounds/wind.mp3
+    - assets/sounds/sample_loop.wav
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

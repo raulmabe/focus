@@ -1,0 +1,1 @@
+com.fuyumi.flutterstatusbarcolor.flutterstatusbarcolor
