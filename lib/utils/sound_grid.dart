@@ -16,13 +16,20 @@ enum PlayerState { stopped, playing, paused }
 class _soundGridState extends State<SoundGrid> {
 
   List<AudioPlayer> audioPlayers;
+  List<AudioPlayer> audioPlayers2;
 
   List<PlayerState> playerStates;
+  List<PlayerState> playerStates2;
   List<String> paths;
 
   List<AssetImage> images;
   List<bool> activeSounds;
   List<double> volumeSounds;
+
+  List<Duration> durationSounds;
+  List<Duration> positionSounds;
+
+  int actualPlayer;
 
   @override
     void initState() {
@@ -30,14 +37,39 @@ class _soundGridState extends State<SoundGrid> {
       activeSounds = new List<bool>();
       volumeSounds = new List<double>();
       audioPlayers = new List<AudioPlayer>();
+      audioPlayers2 = new List<AudioPlayer>();
       playerStates = new List<PlayerState>();
+      playerStates2 = new List<PlayerState>();
+      durationSounds = new List<Duration>();
+      positionSounds = new List<Duration>();
       paths = new List<String>();
       for(int i = 0; i < 16; ++i) images.add(new AssetImage(getImage(i)));
       for(int i = 0; i < 16; ++i) activeSounds.add(false);
       for(int i = 0; i < 16; ++i) volumeSounds.add(0.5);
       for(int i = 0; i < 16; ++i) audioPlayers.add(new AudioPlayer());
+      for(int i = 0; i < 16; ++i) audioPlayers2.add(new AudioPlayer());
+
       for(int i = 0; i < 16; ++i) playerStates.add(PlayerState.stopped);
+      for(int i = 0; i < 16; ++i) playerStates2.add(PlayerState.stopped);
       for(int i = 0; i < 16; ++i) paths.add(getPath(i));
+      for(int i = 0; i < 16; ++i) durationSounds.add(new Duration(seconds: 0));
+      for(int i = 0; i < 16; ++i) positionSounds.add(new Duration(seconds: 0));
+
+      for(int i = 0; i < 16; ++i){
+        audioPlayers[i].setDurationHandler((Duration d) => setState(() {
+          durationSounds[i] = d;
+          //print('Duration: $d');
+        }));
+        audioPlayers[i].setPositionHandler((Duration d) => setState(() {
+          positionSounds[i] = d;
+          //print('Position: $d');
+          if(d.inSeconds == durationSounds[i].inSeconds-1) playSound(i, false);
+        }));
+        audioPlayers[i].setCompletionHandler(() => setState(() {
+          positionSounds[i] = durationSounds[i];
+        }));
+      }
+
       super.initState();
     }
 
@@ -87,16 +119,26 @@ class _soundGridState extends State<SoundGrid> {
       );
     }
 
-    playSound(int i) async {
+    playSound(int i, bool primary) async {
       final dir = await getTemporaryDirectory();
       final file = new File('${dir.path}/${paths[i]}');
       final soundData = await rootBundle.load('assets/sounds/${paths[i]}');
       final bytes = soundData.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
-      print('Playing ${paths[i]}');
+      if(primary) print('First audio: Playing ${paths[i]}');
+      else print('Second audio: Playing ${paths[i]}');
       int result = 0;
-      if(playerStates[i] != PlayerState.playing)
-        result = await audioPlayers[i].play(file.path, isLocal: true, volume: volumeSounds[i], loop: true);
+      if(primary){
+        if(playerStates[i] != PlayerState.playing){
+          result = await audioPlayers[i].play(file.path, isLocal: true, volume: volumeSounds[i], loop: true);
+        }
+      } else{
+        if(playerStates2[i] != PlayerState.playing){
+          result = await audioPlayers2[i].play(file.path, isLocal: true, volume: volumeSounds[i], loop: true);
+        }
+      }
+        //sleep(const Duration(seconds: 1));
+        //result = await audioPlayers[i+1].play(file.path, isLocal: true, volume: volumeSounds[i], loop: true);
       if(result == 1) playerStates[i] = PlayerState.playing;
     }
 
@@ -105,23 +147,26 @@ class _soundGridState extends State<SoundGrid> {
       volumeSounds[i] = value;
       setState(() {});
       await audioPlayers[i].volume(value);
+      await audioPlayers2[i].volume(value);
     }
 
     void setSound(int i, bool play) async{
+      actualPlayer = i;
       activeSounds[i] = play;
       setState(() {});
       // Reproduce sound
-      if(play) playSound(i);
+      if(play) playSound(i, true);
       else{
         await audioPlayers[i].stop();
+        await audioPlayers2[i].stop();
         playerStates[i] = PlayerState.stopped;
+        playerStates2[i] = PlayerState.stopped;
       }
     }
 
     String getPath(int i){
-      i = 0;
       switch (i) {
-        case 0: return 'sample_loop.wav';
+        case 0: return 'rain.mp3';
         case 1: return 'thunder.mp3';
         case 2: return 'wind.mp3';
         case 3: return 'forest.mp3';
