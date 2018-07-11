@@ -21,7 +21,7 @@ class Settings extends StatelessWidget {
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400
     );
-    darkColor = new Color.fromRGBO(0, 191, 165, 1.0);
+    darkColor = Colors.blueGrey;
     lightColor = new Color.fromRGBO(93, 242, 214,1.0);
   }
 
@@ -42,8 +42,9 @@ class Settings extends StatelessWidget {
             child: new ListView(
               children: <Widget>[
                 new ThemeTile(title, subtitle, callbackUpdate),
-                new Divider(),
-
+                new Divider(color: darkColor,),
+                new ListTile(title: new Text('About me', style: subtitle,),),
+                new Divider(color: darkColor,),
               ],
             ),
           ),

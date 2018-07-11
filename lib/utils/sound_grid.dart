@@ -29,7 +29,7 @@ class _soundGridState extends State<SoundGrid> {
   List<Duration> durationSounds;
   List<Duration> positionSounds;
 
-  int actualPlayer;
+  int aux = 0;
 
   @override
     void initState() {
@@ -56,18 +56,43 @@ class _soundGridState extends State<SoundGrid> {
       for(int i = 0; i < 16; ++i) positionSounds.add(new Duration(seconds: 0));
 
       for(int i = 0; i < 16; ++i){
-        audioPlayers[i].setDurationHandler((Duration d) => setState(() {
+        audioPlayers[i].setDurationHandler((Duration d) {
+            durationSounds[i] = d;
+          }
+          /*=> setState(() {
           durationSounds[i] = d;
-          //print('Duration: $d');
-        }));
-        audioPlayers[i].setPositionHandler((Duration d) => setState(() {
+          //print('Duration: $d');}*/
+        );
+        audioPlayers[i].setPositionHandler((Duration d) {
           positionSounds[i] = d;
           //print('Position: $d');
           if(d.inSeconds == durationSounds[i].inSeconds-1) playSound(i, false);
-        }));
-        audioPlayers[i].setCompletionHandler(() => setState(() {
-          positionSounds[i] = durationSounds[i];
-        }));
+        }
+        );
+        
+        //audioPlayers[i].setCompletionHandler(() => setState(() {
+         // positionSounds[i] = durationSounds[i];
+       // }));
+        /*audioPlayers[i].setErrorHandler((msg) {
+          print('audioPlayer error : $msg');
+          setState(() {
+            playerStates[i] = PlayerState.stopped;
+            audioPlayers2[i].stop();
+            playerStates2[i] = PlayerState.stopped;
+            durationSounds[i] = new Duration(seconds: 0);
+            positionSounds[i] = new Duration(seconds: 0);
+          });
+        });
+        audioPlayers2[i].setErrorHandler((msg) {
+          print('audioPlayer error : $msg');
+          setState(() {
+            audioPlayers[i].stop();
+            playerStates[i] = PlayerState.stopped;
+            playerStates2[i] = PlayerState.stopped;
+            durationSounds[i] = new Duration(seconds: 0);
+            positionSounds[i] = new Duration(seconds: 0);
+          });
+        });*/
       }
 
       super.initState();
@@ -76,6 +101,8 @@ class _soundGridState extends State<SoundGrid> {
   @override
     Widget build(BuildContext context) {
       // TODO: implement build
+      aux++;
+      print('SettingState for the $aux time');
       return new Center(
         child: new GridView.count(
           crossAxisCount: 2,
@@ -125,21 +152,20 @@ class _soundGridState extends State<SoundGrid> {
       final soundData = await rootBundle.load('assets/sounds/${paths[i]}');
       final bytes = soundData.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
-      if(primary) print('First audio: Playing ${paths[i]}');
-      else print('Second audio: Playing ${paths[i]}');
       int result = 0;
       if(primary){
         if(playerStates[i] != PlayerState.playing){
+          print('First audio: Playing ${paths[i]}');
           result = await audioPlayers[i].play(file.path, isLocal: true, volume: volumeSounds[i], loop: true);
         }
+        if(result == 1) playerStates[i] = PlayerState.playing;
       } else{
         if(playerStates2[i] != PlayerState.playing){
           result = await audioPlayers2[i].play(file.path, isLocal: true, volume: volumeSounds[i], loop: true);
+          print('Second audio: Playing ${paths[i]}');
         }
+        if(result == 1) playerStates2[i] = PlayerState.playing;
       }
-        //sleep(const Duration(seconds: 1));
-        //result = await audioPlayers[i+1].play(file.path, isLocal: true, volume: volumeSounds[i], loop: true);
-      if(result == 1) playerStates[i] = PlayerState.playing;
     }
 
 
@@ -151,7 +177,6 @@ class _soundGridState extends State<SoundGrid> {
     }
 
     void setSound(int i, bool play) async{
-      actualPlayer = i;
       activeSounds[i] = play;
       setState(() {});
       // Reproduce sound
