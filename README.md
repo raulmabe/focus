@@ -4,7 +4,7 @@ _Multiplatform application to help students focus on their studying time._
 
 ## Motivation
 
-I had trouble focusing while studying for my college exams. I found and used some apps that helped with my concentration by reproducing ambiental sounds, or 5217 timers [(Learn more about 5217 theory)](https://bulletproofmusician.com/how-to-intensify-your-focus-and-be-more-productive-with-the-5217-split/). Hence, I came up with the idea of developing an app with both functionalities (better idea than actually studying for the tests).
+I had trouble focusing while studying for my college exams. I found and used some apps that helped with my concentration by reproducing ambiental sounds, or 5217 timer [(Learn more about 5217 theory)](https://bulletproofmusician.com/how-to-intensify-your-focus-and-be-more-productive-with-the-5217-split/). Hence, I came up with the idea of developing an app with both functionalities (better idea than actually studying for the tests).
 
 In addition, I had already developed some Java games for mobile. Then, I started to check on other frameworks and libraries that I did not know about. I found some videos about a framework called Flutter, which seemed really fun to code with. However, although it was very stable, Flutter was in beta at that time. I decided to start developing it given that I really like challenges.
 
@@ -17,8 +17,6 @@ I faced two big problems during the development of this application. To begin wi
 Eventually, I had to start studying for my tests so I abandoned the development of this application.
 
 ## Built with 🛠️
-
-Below I mention several tools I used to develop this app:
 
 * [Flutter](https://flutter.dev/) - Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase
 
